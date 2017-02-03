@@ -46,10 +46,12 @@ public ATMMachine() {
 				try {
 				Account.Withdraw();
 				if (checking.isSelected()) {
-				System.out.println(Account.checkingBalance);
+					popUp.showMessageDialog(frame,
+					"New checking account balance: " + Account.checkingBalance);
 				}
 				else if (savings.isSelected()) {
-				System.out.println(Account.savingsBalance);
+					popUp.showMessageDialog(frame,
+					"New savings account balance: " + Account.savingsbalance);
 				}
 				else {
 					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
@@ -62,9 +64,12 @@ public ATMMachine() {
 				}
 		}
 		});
+		//Set withdraw button action
 		withdrawal.setPreferredSize(new Dimension(100, 30));
 
+		//Create and configure transfer button
 		transferTo = new JButton( new AbstractAction("Transfer To") {
+			//Create and configure transfer button action
 			public void actionPerformed(ActionEvent e) {
 				try {
 				Account.Transfer();
@@ -73,25 +78,38 @@ public ATMMachine() {
 					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
 					"Insufficient funds in selected account");
 				}
-				System.out.println("Checking:" + Account.checkingBalance);
-				System.out.println("Savings:" + Account.savingsBalance);
+				ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
+				"Checking Balance: " + Account.checkingBalance + "/n" +
+				"Savings Balance: " + Account.savingsBalance);
 			}
 		});
+		//Set size of transfer button
 		transferTo.setPreferredSize(new Dimension(100, 30));
 
+		//Create and configure deposit button
 		deposit = new JButton( new AbstractAction("Deposit") {
+			//create and configure deposit button action
 			public void actionPerformed(ActionEvent e) {
 				Account.Deposit();
 				if (checking.isSelected()) {
-					System.out.println(Account.checkingBalance);
-				}
+					popUp.showMessageDialog(frame,
+					"New checking account balance: " + Account.checkingBalance);
 				else if (savings.isSelected()) {
-					System.out.println(Account.savingsBalance);
+					popUp.showMessageDialog(frame,
+					"New savings account balance: " + Account.savingsbalance);
+				}
 			}
-	}});
+				else {
+					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
+					"Please select the desired account");
+				}
+	}});	
+		//Set size of deposit button
 		deposit.setPreferredSize(new Dimension(100, 30));
-
+	
+		//Create and configure balance button
 		balance = new JButton( new AbstractAction("Balance") {
+			//create and configure balance button action
 			public void actionPerformed(ActionEvent e) {
 				Account.GetBalance();
 				popUp = new JOptionPane();
@@ -104,41 +122,49 @@ public ATMMachine() {
 				popUp.showMessageDialog(frame, message + "$" + Double.toString(
 				Account.accountBalance));
 			}});
+		//Set size of balance button
 		balance.setPreferredSize(new Dimension(100, 30));
 
+		//Create input TectField
 		input = new JTextField(10);
-
+	
+		//Create checking and savings radio buttons
 		checking = new JRadioButton("Checking");
 		savings = new JRadioButton("Savings");
-
+	
+		//Create buttonGroup and add checking and savings radioButton to make buttons alternate
 		checkSaving = new ButtonGroup();
 		checkSaving.add(checking);
 		checkSaving.add(savings);
-
+	
+		//Create inputPanel and add inputTextField
 		inputPanel = new JPanel();
 		inputPanel.add(input);
-
+	
+		//Create buttonPanel for top buttons
 		buttonPanelOne = new JPanel();
 		buttonPanelOne.setLayout(new FlowLayout(1, 30, 10));
 		buttonPanelOne.add(withdrawal);
 		buttonPanelOne.add(transferTo);
-
+	
+		//Create buttonpanel for lower buttons
 		buttonPanelTwo = new JPanel();
 		buttonPanelTwo.setLayout(new FlowLayout(1, 30, 10));
 		buttonPanelTwo.add(deposit);
 		buttonPanelTwo.add(balance);
 
-
+		//Create RadioPanel and add radio buttons to panel
 		radioPanel = new JPanel();
 		radioPanel.add(checking);
 		radioPanel.add(savings);
-
+		//Create mainPanel and add all underlying panels
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, 3));
 		mainPanel.add(buttonPanelOne);
 		mainPanel.add(buttonPanelTwo);
 		mainPanel.add(radioPanel);
 		mainPanel.add(inputPanel);
+		//Make mainPanel visible
 		add(mainPanel);
 
 
