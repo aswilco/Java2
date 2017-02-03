@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.Dialog;
 
 public class ATMMachine extends JFrame {
+	//ATMMachine Fields/Variables
 	static JFrame frame;
 	protected JPanel mainPanel;
 	protected JPanel buttonPanelOne;
@@ -37,22 +38,28 @@ static final int HEIGHT = 200;
 public ATMMachine() {
         super("ATM");
         setFrame(WIDTH, HEIGHT);
-
+//Create and configure Withdraw Button
 		withdrawal = new JButton( new AbstractAction("Withdraw") {
-		public void actionPerformed(ActionEvent e) {
-			try {
-			Account.Withdraw();
-			if (checking.isSelected()) {
+		//Congfigure Withdraw Action
+			public void actionPerformed(ActionEvent e) {
+				//Try statement required to catch InsufficientFunds checked exception
+				try {
+				Account.Withdraw();
+				if (checking.isSelected()) {
 				System.out.println(Account.checkingBalance);
-			}
-			else if (savings.isSelected()) {
+				}
+				else if (savings.isSelected()) {
 				System.out.println(Account.savingsBalance);
-			}
-		}
-		catch (InsufficientFunds evt) {
-		ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
-		"Insufficient funds in selected account");
-	}
+				}
+				else {
+					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
+					"Please select the desired account");
+				}
+				}
+				catch (InsufficientFunds evt) {
+					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
+					"Insufficient funds in selected account");
+				}
 		}
 		});
 		withdrawal.setPreferredSize(new Dimension(100, 30));
