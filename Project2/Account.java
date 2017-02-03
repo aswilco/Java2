@@ -91,36 +91,38 @@ public class Account extends ATMMachine {
 		}
 	}
 
-public static void Transfer() {
-	try {Integer.parseInt(ATMMachine.input.getText());
-	float amount = Integer.parseInt(ATMMachine.input.getText());
-		if (ATMMachine.checking.isSelected()) {
-		checkingBalance = checkingBalance + amount;
-		savingsBalance = savingsBalance - amount;
-		if (savingsBalance < 0) {
-		savingsBalance = savingsBalance + amount;
-		checkingBalance = checkingBalance - amount;
-		throw new InsufficientFunds();
+	public static void Transfer() {
+		try {
+			Integer.parseInt(ATMMachine.input.getText());
+			float amount = Integer.parseInt(ATMMachine.input.getText());
+			if (ATMMachine.checking.isSelected()) {
+				checkingBalance = checkingBalance + amount;
+				savingsBalance = savingsBalance - amount;
+				if (savingsBalance < 0) {
+					savingsBalance = savingsBalance + amount;
+					checkingBalance = checkingBalance - amount;
+					throw new InsufficientFunds();
+				}
+			}
+			else if (ATMMachine.savings.isSelected()) {
+				savingsBalance= savingsBalance + amount;
+				checkingBalance = checkingBalance - amount;
+				if (checkingBalance < 0) {
+					checkingBalance = checkingBalance + amount;
+					savingsBalance = savingsBalance - amount;
+					throw new InsufficientFunds();
+				}
+
+			}
+			ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
+				"Checking Balance: " + Account.checkingBalance + "/n" +
+				"Savings Balance: " + Account.savingsBalance);
+		}
+		catch (NumberFormatException e) {
+			ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
+			"Input value must be numeric");
 		}
 	}
-	else if (ATMMachine.savings.isSelected()) {
-		savingsBalance= savingsBalance + amount;
-		checkingBalance = checkingBalance - amount;
-		if (checkingBalance < 0) {
-			checkingBalance = checkingBalance + amount;
-			savingsBalance = savingsBalance - amount;
-			throw new InsufficientFunds();
-		}
-		ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
-			"Checking Balance: " + Account.checkingBalance + "/n" +
-			"Savings Balance: " + Account.savingsBalance);
-	}
-}
-catch (NumberFormatException e) {
-		ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
-	"Input value must be numeric");
-}
-}
 
 	public static double GetBalance() {
 		if (ATMMachine.checking.isSelected()) {
