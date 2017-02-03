@@ -66,9 +66,6 @@ public ATMMachine() {
 					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
 					"Insufficient funds in selected account");
 				}
-				ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
-				"Checking Balance: " + Account.checkingBalance + "/n" +
-				"Savings Balance: " + Account.savingsBalance);
 			}
 		});
 		//Set size of transfer button
@@ -79,19 +76,8 @@ public ATMMachine() {
 			//create and configure deposit button action
 			public void actionPerformed(ActionEvent e) {
 				Account.Deposit();
-				if (checking.isSelected()) {
-					popUp.showMessageDialog(frame,
-					"New checking account balance: " + Account.checkingBalance);
-				else if (savings.isSelected()) {
-					popUp.showMessageDialog(frame,
-					"New savings account balance: " + Account.savingsbalance);
-				}
 			}
-				else {
-					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
-					"Please select the desired account");
-				}
-	}});	
+		}});	
 		//Set size of deposit button
 		deposit.setPreferredSize(new Dimension(100, 30));
 	
