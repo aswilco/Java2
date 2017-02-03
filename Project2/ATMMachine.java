@@ -45,18 +45,6 @@ public ATMMachine() {
 				//Try statement required to catch InsufficientFunds checked exception
 				try {
 				Account.Withdraw();
-				if (checking.isSelected()) {
-					popUp.showMessageDialog(frame,
-					"New checking account balance: " + Account.checkingBalance);
-				}
-				else if (savings.isSelected()) {
-					popUp.showMessageDialog(frame,
-					"New savings account balance: " + Account.savingsbalance);
-				}
-				else {
-					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
-					"Please select the desired account");
-				}
 				}
 				catch (InsufficientFunds evt) {
 					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
