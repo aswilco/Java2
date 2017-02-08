@@ -1,4 +1,4 @@
-public class InsufficientFunds extends RuntimeException{
+public class InsufficientFunds extends Exception{
 	}
 
 
