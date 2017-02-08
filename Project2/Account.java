@@ -1,6 +1,6 @@
 import java.math.*;
 
-public class Account extends ATMMachine {
+public class Account {
 	protected static double savingsBalance;
 	protected static double checkingBalance;
 	protected static double accountBalance;
