@@ -1,0 +1,5 @@
+need radio buttons, add house, list house
+
+add house will add house to list
+
+list house will get houses with location

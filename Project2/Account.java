@@ -1,4 +1,3 @@
-import java.math.*;
 
 public class Account extends ATMMachine {
 	protected static double savingsBalance;
@@ -29,7 +28,7 @@ public class Account extends ATMMachine {
 							throw new InsufficientFunds();
 						}
 					ATMMachine.popUp.showMessageDialog(frame,
-					"New checking account balance: " + Account.checkingBalance);
+					"New checking account balance: $" + String.format( "%.2f", checkingBalance));
 					}
 					//check if savings is selected and perform math on savingsBalance
 					else if (ATMMachine.savings.isSelected()) {
@@ -41,13 +40,14 @@ public class Account extends ATMMachine {
 							throw new InsufficientFunds();
 						}
 					ATMMachine.popUp.showMessageDialog(frame,
-					"New savings account balance: " + Account.savingsbalance);
+					"New savings account balance: $" + String.format("%.2f", savingsBalance));
 					}
 					else {
 						ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
 						"Please select the desired account");
 
 			 		}
+				}
 				//if input is not value of 20 give messageprompt
 			 	else {
 					 ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
@@ -61,10 +61,10 @@ public class Account extends ATMMachine {
 			}
 
 	}
-	
+
 	//Deposit method for deposit button
 	public static void Deposit() {
-		//try to parse Int 
+		//try to parse Int
 		try {
 			Integer.parseInt(ATMMachine.input.getText());
 			double amount = Integer.parseInt(ATMMachine.input.getText());
@@ -72,21 +72,21 @@ public class Account extends ATMMachine {
 			if (ATMMachine.checking.isSelected()) {
 				checkingBalance = checkingBalance + amount;
 				popUp.showMessageDialog(frame,
-					"New checking account balance: " + Account.checkingBalance);
-			} 
+					"New checking account balance: $" + String.format("%.2f", checkingBalance));
+			}
 			else if (ATMMachine.savings.isSelected()) {
 				savingsBalance = savingsBalance + amount;
 				popUp.showMessageDialog(frame,
-					"New savings account balance: " + Account.savingsbalance);
+					"New savings account balance: $" + String.format("%.2f", savingsBalance));
 			}
 			else {
 				ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
 					"Please select the desired account");
 				}
-		} 
+		}
 		//catch nfe for parse Int and display error
 		catch (NumberFormatException e) {
-			ATMMachine.popUp.showMessageDialog(ATMMachine.frame, 
+			ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
 			"Please enter a number");
 		}
 	}
@@ -115,8 +115,8 @@ public class Account extends ATMMachine {
 
 			}
 			ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
-				"Checking Balance: " + Account.checkingBalance + "/n" +
-				"Savings Balance: " + Account.savingsBalance);
+				"Checking Balance: $" + String.format("%.2f", Account.checkingBalance) + "\n "+
+				"Savings Balance: $" + String.format("%.2f", Account.savingsBalance));
 		}
 		catch (NumberFormatException e) {
 			ATMMachine.popUp.showMessageDialog(ATMMachine.frame,

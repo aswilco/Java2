@@ -1,14 +1,12 @@
 import java.awt.event.*;
 import java.awt.*;
-import java.io.IOException;
-import java.util.Scanner;
 import javax.swing.*;
-import java.awt.Dialog;
+import java.text.*;
 
 public class ATMMachine extends JFrame {
 	//ATMMachine Fields/Variables
 	static JFrame frame;
-	protected JPanel mainPanel;
+	private JPanel mainPanel;
 	protected JPanel buttonPanelOne;
 	protected JPanel buttonPanelTwo;
 	protected JPanel radioPanel;
@@ -27,7 +25,8 @@ public class ATMMachine extends JFrame {
 	protected static JTextField input;
 	protected int amount;
 	private String message;
-
+	private JLabel dollarLabel;
+	DecimalFormat df = new DecimalFormat("#.00");
 
 
 //define WIDTH and HEIGHT of ATM Machine win8dow
@@ -47,7 +46,7 @@ public ATMMachine() {
 				Account.Withdraw();
 				}
 				catch (InsufficientFunds evt) {
-					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
+					popUp.showMessageDialog(frame,
 					"Insufficient funds in selected account");
 				}
 		}
@@ -63,7 +62,7 @@ public ATMMachine() {
 				Account.Transfer();
 			}
 				catch (InsufficientFunds evt) {
-					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
+					popUp.showMessageDialog(frame,
 					"Insufficient funds in selected account");
 				}
 			}
@@ -77,10 +76,10 @@ public ATMMachine() {
 			public void actionPerformed(ActionEvent e) {
 				Account.Deposit();
 			}
-		}});	
+		});
 		//Set size of deposit button
 		deposit.setPreferredSize(new Dimension(100, 30));
-	
+
 		//Create and configure balance button
 		balance = new JButton( new AbstractAction("Balance") {
 			//create and configure balance button action
@@ -99,28 +98,31 @@ public ATMMachine() {
 		//Set size of balance button
 		balance.setPreferredSize(new Dimension(100, 30));
 
-		//Create input TectField
+		//Create input TextField
+		dollarLabel = new JLabel("$");
 		input = new JTextField(10);
-	
+
 		//Create checking and savings radio buttons
 		checking = new JRadioButton("Checking");
 		savings = new JRadioButton("Savings");
-	
+
 		//Create buttonGroup and add checking and savings radioButton to make buttons alternate
 		checkSaving = new ButtonGroup();
 		checkSaving.add(checking);
 		checkSaving.add(savings);
-	
+
 		//Create inputPanel and add inputTextField
 		inputPanel = new JPanel();
+		inputPanel.add(dollarLabel);
 		inputPanel.add(input);
-	
+
+
 		//Create buttonPanel for top buttons
 		buttonPanelOne = new JPanel();
 		buttonPanelOne.setLayout(new FlowLayout(1, 30, 10));
 		buttonPanelOne.add(withdrawal);
 		buttonPanelOne.add(transferTo);
-	
+
 		//Create buttonpanel for lower buttons
 		buttonPanelTwo = new JPanel();
 		buttonPanelTwo.setLayout(new FlowLayout(1, 30, 10));
@@ -163,7 +165,7 @@ public static void main(String[] args) {
 
         ATMMachine atmMachine = new ATMMachine();
         atmMachine.display();
-        atmMachine.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        atmMachine.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //	}
 //	catch (Exception e) {
 //		popUp.showMessageDialog(frame, "Something unexpected happened!");
