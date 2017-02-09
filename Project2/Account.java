@@ -1,8 +1,8 @@
 
 public class Account {
-	protected static double savingsBalance;
-	protected static double checkingBalance;
-	protected static double accountBalance;
+	private static double savingsBalance = 0;
+	private static double checkingBalance = 0;
+	private static double accountBalance = 0;
 	private static int transactions = 0;
 	private static double transactionFee = 1.50;
 
@@ -27,7 +27,7 @@ public class Account {
 							--transactions;
 							throw new InsufficientFunds();
 						}
-					ATMMachine.popUp.showMessageDialog(frame,
+					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
 					"New checking account balance: $" + String.format( "%.2f", checkingBalance));
 					}
 					//check if savings is selected and perform math on savingsBalance
@@ -39,7 +39,7 @@ public class Account {
 							--transactions;
 							throw new InsufficientFunds();
 						}
-					ATMMachine.popUp.showMessageDialog(frame,
+					ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
 					"New savings account balance: $" + String.format("%.2f", savingsBalance));
 					}
 					else {
@@ -71,12 +71,12 @@ public class Account {
 
 			if (ATMMachine.checking.isSelected()) {
 				checkingBalance = checkingBalance + amount;
-				popUp.showMessageDialog(frame,
+				ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
 					"New checking account balance: $" + String.format("%.2f", checkingBalance));
 			}
 			else if (ATMMachine.savings.isSelected()) {
 				savingsBalance = savingsBalance + amount;
-				popUp.showMessageDialog(frame,
+				ATMMachine.popUp.showMessageDialog(ATMMachine.frame,
 					"New savings account balance: $" + String.format("%.2f", savingsBalance));
 			}
 			else {
