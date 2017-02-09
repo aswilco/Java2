@@ -130,17 +130,7 @@ public static int membersInNeighborhood;
 		outputPanel.add(houseData);
 	    
 		inputPanel = new JPanel();
-	    
-		mainPanel = new JPanel();
-	    
-		add(mainPanel);
-		mainPanel.add(inputPanel);
-		mainPanel.add(buttonPanel);
-		mainPanel.add(outputPanel);
-		mainPanel.setLayout(new FlowLayout());
-		inputLabel = new JLabel();
-
-		inputPanel.setLayout(new GridLayout(0, 2));
+	    	inputPanel.setLayout(new GridLayout(0, 2));
 		inputPanel.add(inputLabelHouseAddress);
 		inputPanel.add(houseAddress);
 		inputPanel.add(inputLabelHouseLocation);
@@ -157,18 +147,25 @@ public static int membersInNeighborhood;
 		inputPanel.add(houseStyle);
 		inputPanel.add(inputLabelWindowNumber);
 		inputPanel.add(windowNumber);
-
 		inputPanel.add(inputLabelHouseBasement);
 		inputPanel.add(houseBasement);
 		inputPanel.add(inputLabelHouseGarage);
 		inputPanel.add(houseGarage);
 		inputPanel.add(inputLabelHouseLaundryRoom);
 		inputPanel.add(houseLaundryRoom);
+	    
+		mainPanel = new JPanel();
+	    
+		add(mainPanel);
+		mainPanel.add(inputPanel);
+		mainPanel.add(buttonPanel);
+		mainPanel.add(outputPanel);
+		mainPanel.setLayout(new FlowLayout());
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void actionPerformed(ActionEvent evt) {
-		int x = 0;
+    private void actionPerformed(ActionEvent evt) {
 		if (buildHouse.isSelected()) {
 			if (houseBasement.isSelected()) {
 				isBasement = true;
@@ -180,19 +177,19 @@ public static int membersInNeighborhood;
 				isLaundryRoom = true;
 			}
 			houses.add (new House(houseAddress.getText(), Integer.parseInt(squareFeet.getText()), Integer.parseInt(windowNumber.getText()),
-			houseLocation.getText(), Integer.parseInt(houseBedrooms.getText()), Integer.parseInt(houseFloors.getText()),
-			Integer.parseInt(houseBathrooms.getText()), houseStyle.getText(), isBasement, isGarage,
-			isLaundryRoom));
-			squareFeet.setText(" ");
-			windowNumber.setText(" ");
-			houseLocation.setText(" ");
-			houseBedrooms.setText(" ");
-			houseFloors.setText(" ");
-			houseBathrooms.setText(" ");
-			houseStyle.setText(" ");
-			houseBasement.setText(" ");
-			houseGarage.setText(" ");
-			houseLaundryRoom.setText(" ");
+				houseLocation.getText(), Integer.parseInt(houseBedrooms.getText()), Integer.parseInt(houseFloors.getText()),
+				Integer.parseInt(houseBathrooms.getText()), houseStyle.getText(), isBasement, isGarage,
+				isLaundryRoom));
+			squareFeet.setText("");
+			windowNumber.setText("");
+			houseLocation.setText("");
+			houseBedrooms.setText("");
+			houseFloors.setText("");
+			houseBathrooms.setText("");
+			houseStyle.setText("");
+			isBasement.setSelected(false);
+			isGarage.setSelected(false);
+			isLaundryRoom.setSelected(false);
 			houseData.setText(houses.get(houses.size()-1).toString());
 			houseData.revalidate();
 			outputPanel.repaint();
@@ -219,18 +216,12 @@ public static int membersInNeighborhood;
         setVisible(true);
     }
 
-
     public static void main(String[] args) {
-
         String addLaundryRoom;
-
-
 		PrintHouse house = new PrintHouse();
 		house.Visible();
 		house.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-}
+	}
 }
 
 
