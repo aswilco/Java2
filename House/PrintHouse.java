@@ -8,13 +8,17 @@ import java.util.ArrayList;
 
 public class PrintHouse extends JFrame implements ActionListener {
 
+//Create all GUI elements
+//Panels
 private JPanel inputPanel;
 private JPanel outputPanel;
 private JPanel mainPanel;
 private JPanel buttonPanel;
 
+//TextArea
 private JTextArea houseData;
 
+//TextField
 private JTextField squareFeet;
 private JTextField windowNumber;
 private JTextField houseStyle;
@@ -24,18 +28,20 @@ private JTextField houseBathrooms;
 private JTextField houseBedrooms;
 private JTextField houseAddress;
 
+//CheckBox
 private JCheckBox houseBasement;
 private JCheckBox houseGarage;
 private JCheckBox houseLaundryRoom;
 
+//RadioButtons and group
 private JRadioButton buildHouse;
 private JRadioButton checkHouse;
 private ButtonGroup options;
 
-
+//JButtons
 private JButton execute;
-private JButton exit;
 
+//Labels
 private JLabel inputLabelSquareFeet;
 private JLabel inputLabelHouseLocation;
 private JLabel inputLabelMembersInHouse;
@@ -51,8 +57,10 @@ private JLabel inputLabelWindowNumber;
 private JLabel inputLabelHouseLaundryRoom;
 private JLabel inputLabelHouseAddress;
 
+//Create new listarray of Item type house
 private ArrayList<House> houses = new ArrayList<House>();
 
+//Create boolean for checked box ofr true/false house info	
 private boolean isBasement;
 private boolean isGarage;
 private boolean isLaundryRoom;
@@ -61,26 +69,18 @@ public static int housesInNeighborhood;
 public static int membersInNeighborhood;
     public PrintHouse() {
 		super("House Info");
-
 		setFrame(500, 500);
-
-
 		buttonPanel = new JPanel();
-
 		execute = new JButton("Execute");
 
-		exit = new JButton( new AbstractAction("close") {
-			public void actionPerformed (ActionEvent e) {
-				System.exit(0);
-			}
-		});
-
-		options = new ButtonGroup();
-
+	    	options = new ButtonGroup();
 		buildHouse = new JRadioButton("Add House");
 		checkHouse = new JRadioButton("Get House Stats");
 		options.add(buildHouse);
 		options.add(checkHouse);
+	    	buttonPanel.add(buildHouse);
+		buttonPanel.add(checkHouse);
+		buttonPanel.add(execute);
 
 		inputLabelHouseAddress = new JLabel("Address");
 		houseAddress = new JTextField();
@@ -123,24 +123,22 @@ public static int membersInNeighborhood;
 		houseData.setBackground(Color.lightGray);
 		houseData.setEditable(false);
 
-		buttonPanel.add(buildHouse);
-		buttonPanel.add(checkHouse);
-		buttonPanel.add(execute);
-		buttonPanel.add(exit);
 		execute.addActionListener(this);
 		outputPanel = new JPanel();
 		outputLabel = new JLabel("House Info");
 		outputPanel.add(outputLabel);
 		outputPanel.add(houseData);
+	    
 		inputPanel = new JPanel();
+	    
 		mainPanel = new JPanel();
+	    
 		add(mainPanel);
 		mainPanel.add(inputPanel);
 		mainPanel.add(buttonPanel);
 		mainPanel.add(outputPanel);
 		mainPanel.setLayout(new FlowLayout());
 		inputLabel = new JLabel();
-
 
 		inputPanel.setLayout(new GridLayout(0, 2));
 		inputPanel.add(inputLabelHouseAddress);
