@@ -33,17 +33,16 @@ public class House extends Building{
     public House(String address, int squareFeet, int numWindows, String location, int bedrooms, int floors, double bathrooms,
             String style, boolean basement, boolean garage, boolean laundryRoom) {
 		super(squareFeet, numWindows, location);
-        this.bedrooms = bedrooms;
-        this.floors = floors;
-        this.bathrooms = bathrooms;
-        this.style = style;
-        this.basement = basement;
-        this.garage = garage;
-        this.laundryRoom = laundryRoom;
-        this.houseMembers = houseMembers;
-        this.address = address;
-        PrintHouse.membersInNeighborhood = this.houseMembers + PrintHouse.membersInNeighborhood;
-        ++PrintHouse.housesInNeighborhood;
+        	this.bedrooms = bedrooms;
+        	this.floors = floors;
+        	this.bathrooms = bathrooms;
+        	this.style = style;
+        	this.basement = basement;
+        	this.garage = garage;
+        	this.laundryRoom = laundryRoom;
+        	this.houseMembers = houseMembers;
+        	this.address = address;
+        	++PrintHouse.housesInNeighborhood;
 
     }
 

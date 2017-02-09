@@ -8,13 +8,17 @@ import java.util.ArrayList;
 
 public class PrintHouse extends JFrame implements ActionListener {
 
+//Create all GUI elements
+//Panels
 private JPanel inputPanel;
 private JPanel outputPanel;
 private JPanel mainPanel;
 private JPanel buttonPanel;
 
+//TextArea
 private JTextArea houseData;
 
+//TextField
 private JTextField squareFeet;
 private JTextField windowNumber;
 private JTextField houseStyle;
@@ -24,18 +28,20 @@ private JTextField houseBathrooms;
 private JTextField houseBedrooms;
 private JTextField houseAddress;
 
+//CheckBox
 private JCheckBox houseBasement;
 private JCheckBox houseGarage;
 private JCheckBox houseLaundryRoom;
 
+//RadioButtons and group
 private JRadioButton buildHouse;
 private JRadioButton checkHouse;
 private ButtonGroup options;
 
-
+//JButtons
 private JButton execute;
-private JButton exit;
 
+//Labels
 private JLabel inputLabelSquareFeet;
 private JLabel inputLabelHouseLocation;
 private JLabel inputLabelMembersInHouse;
@@ -51,8 +57,10 @@ private JLabel inputLabelWindowNumber;
 private JLabel inputLabelHouseLaundryRoom;
 private JLabel inputLabelHouseAddress;
 
+//Create new listarray of Item type house
 private ArrayList<House> houses = new ArrayList<House>();
 
+//Create boolean for checked box ofr true/false house info	
 private boolean isBasement;
 private boolean isGarage;
 private boolean isLaundryRoom;
@@ -61,26 +69,18 @@ public static int housesInNeighborhood;
 public static int membersInNeighborhood;
     public PrintHouse() {
 		super("House Info");
-
 		setFrame(500, 500);
-
-
 		buttonPanel = new JPanel();
-
 		execute = new JButton("Execute");
 
-		exit = new JButton( new AbstractAction("close") {
-			public void actionPerformed (ActionEvent e) {
-				System.exit(0);
-			}
-		});
-
-		options = new ButtonGroup();
-
+	    	options = new ButtonGroup();
 		buildHouse = new JRadioButton("Add House");
 		checkHouse = new JRadioButton("Get House Stats");
 		options.add(buildHouse);
 		options.add(checkHouse);
+	    	buttonPanel.add(buildHouse);
+		buttonPanel.add(checkHouse);
+		buttonPanel.add(execute);
 
 		inputLabelHouseAddress = new JLabel("Address");
 		houseAddress = new JTextField();
@@ -123,26 +123,14 @@ public static int membersInNeighborhood;
 		houseData.setBackground(Color.lightGray);
 		houseData.setEditable(false);
 
-		buttonPanel.add(buildHouse);
-		buttonPanel.add(checkHouse);
-		buttonPanel.add(execute);
-		buttonPanel.add(exit);
 		execute.addActionListener(this);
 		outputPanel = new JPanel();
 		outputLabel = new JLabel("House Info");
 		outputPanel.add(outputLabel);
 		outputPanel.add(houseData);
+	    
 		inputPanel = new JPanel();
-		mainPanel = new JPanel();
-		add(mainPanel);
-		mainPanel.add(inputPanel);
-		mainPanel.add(buttonPanel);
-		mainPanel.add(outputPanel);
-		mainPanel.setLayout(new FlowLayout());
-		inputLabel = new JLabel();
-
-
-		inputPanel.setLayout(new GridLayout(0, 2));
+	    	inputPanel.setLayout(new GridLayout(0, 2));
 		inputPanel.add(inputLabelHouseAddress);
 		inputPanel.add(houseAddress);
 		inputPanel.add(inputLabelHouseLocation);
@@ -159,18 +147,25 @@ public static int membersInNeighborhood;
 		inputPanel.add(houseStyle);
 		inputPanel.add(inputLabelWindowNumber);
 		inputPanel.add(windowNumber);
-
 		inputPanel.add(inputLabelHouseBasement);
 		inputPanel.add(houseBasement);
 		inputPanel.add(inputLabelHouseGarage);
 		inputPanel.add(houseGarage);
 		inputPanel.add(inputLabelHouseLaundryRoom);
 		inputPanel.add(houseLaundryRoom);
+	    
+		mainPanel = new JPanel();
+	    
+		add(mainPanel);
+		mainPanel.add(inputPanel);
+		mainPanel.add(buttonPanel);
+		mainPanel.add(outputPanel);
+		mainPanel.setLayout(new FlowLayout());
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void actionPerformed(ActionEvent evt) {
-		int x = 0;
+    private void actionPerformed(ActionEvent evt) {
 		if (buildHouse.isSelected()) {
 			if (houseBasement.isSelected()) {
 				isBasement = true;
@@ -182,19 +177,19 @@ public static int membersInNeighborhood;
 				isLaundryRoom = true;
 			}
 			houses.add (new House(houseAddress.getText(), Integer.parseInt(squareFeet.getText()), Integer.parseInt(windowNumber.getText()),
-			houseLocation.getText(), Integer.parseInt(houseBedrooms.getText()), Integer.parseInt(houseFloors.getText()),
-			Integer.parseInt(houseBathrooms.getText()), houseStyle.getText(), isBasement, isGarage,
-			isLaundryRoom));
-			squareFeet.setText(" ");
-			windowNumber.setText(" ");
-			houseLocation.setText(" ");
-			houseBedrooms.setText(" ");
-			houseFloors.setText(" ");
-			houseBathrooms.setText(" ");
-			houseStyle.setText(" ");
-			houseBasement.setText(" ");
-			houseGarage.setText(" ");
-			houseLaundryRoom.setText(" ");
+				houseLocation.getText(), Integer.parseInt(houseBedrooms.getText()), Integer.parseInt(houseFloors.getText()),
+				Integer.parseInt(houseBathrooms.getText()), houseStyle.getText(), isBasement, isGarage,
+				isLaundryRoom));
+			squareFeet.setText("");
+			windowNumber.setText("");
+			houseLocation.setText("");
+			houseBedrooms.setText("");
+			houseFloors.setText("");
+			houseBathrooms.setText("");
+			houseStyle.setText("");
+			isBasement.setSelected(false);
+			isGarage.setSelected(false);
+			isLaundryRoom.setSelected(false);
 			houseData.setText(houses.get(houses.size()-1).toString());
 			houseData.revalidate();
 			outputPanel.repaint();
@@ -221,18 +216,12 @@ public static int membersInNeighborhood;
         setVisible(true);
     }
 
-
     public static void main(String[] args) {
-
         String addLaundryRoom;
-
-
 		PrintHouse house = new PrintHouse();
 		house.Visible();
 		house.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-}
+	}
 }
 
 
