@@ -73,8 +73,10 @@ public class House extends Building{
 			}
         }
 
-
-    }
+    public String getAddress() {
+		return address;
+		}
+	}
 
 
 
