@@ -34,7 +34,17 @@ Public class Sequence {
       else {
         return 2(computeRecursive(n-1)) + computeRecursive(n-2);
       }
-    }        
+    } 
+     
+   public static int getEfficiency() {
+     if (Compute.iterative.isSelected()) {
+       return i
+     }
+     if (Compute.recursive.isSelected()) {
+       return callsToRecursive
+     }
+   }
+         
   }    
 }
     
