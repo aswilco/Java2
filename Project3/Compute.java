@@ -18,10 +18,18 @@ public class Compute extends JFrame {
   public Compute() {
     super("Project 3");
     setFrame(300, 500);
+    
+    n = new JTextField("Enter an Integer:n");
+    
+    result = new JTextField("Result is:");
+    efficiency = new JTextField("Efficiency of Operation:");
+    
     iterative = new JRadioButton("Iterative Method");
     recursive = new JRadioButton("Recursive Method");
+    
     method.add(iterative);
     method.add(recursive);
+    
       compute = new JButton( new AbstractAction("Compute") {
        public void actionPerformed(ActionEvent e) {
          n = Integer.parseInt(n.getText());
@@ -31,4 +39,6 @@ public class Compute extends JFrame {
          else if (recursive.isSelected()) {
            result.setText(computeRecursive(n));
          }
+         
+
 }
