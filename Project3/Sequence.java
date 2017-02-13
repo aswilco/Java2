@@ -1,6 +1,5 @@
 Public class Sequence {
   
-  private int n = Gui.getText(n);
   
   public static int computeIterative(int n) {
     if (n == 1) {
