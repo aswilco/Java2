@@ -14,6 +14,9 @@ public class Compute extends JFrame {
   private JRadioButton recursive;
   private ButtonGroup method;
   
+  public setVisible() {
+    setVisible(true);
+  }
   
   public Compute() {
     super("Project 3");
@@ -22,7 +25,11 @@ public class Compute extends JFrame {
     n = new JTextField("Enter an Integer:n");
     
     result = new JTextField("Result is:");
+    result.setEditable(false);
+    result.setBackGround(Color.LightGray);
     efficiency = new JTextField("Efficiency of Operation:");
+    efficiency.setEditable(false);
+    efficiency.setBackGround(Color.LightGray);
     
     iterative = new JRadioButton("Iterative Method");
     recursive = new JRadioButton("Recursive Method");
@@ -39,6 +46,12 @@ public class Compute extends JFrame {
          else if (recursive.isSelected()) {
            result.setText(computeRecursive(n));
          }
-         
-
+    
+    mainPanel.add(iterative);
+    mainPanel.add(recursive);
+    mainPanel.add(n);
+    mainPanel.add(compute);
+    mainPanel.add(result);
+    mainPanel.add(efficiency);
+    
 }
