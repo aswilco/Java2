@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Sequence {
 
 private static int results;
@@ -5,8 +7,23 @@ private static int i;
 private static int result;
 private static int runningResult;
 private static int callsToRecursive;
+private ArrayList<Int> results = new ArrayList<int>();
+
 
   public static int computeIterative(int n) {
+	  for (i = 0; i < n; i++) {
+		  if (i == 0) {
+			  results.add(0)
+		  }
+		  if (i == 1) {
+			  results.add(1)
+		  }
+		  else {
+			  results.add(2 * results.get(results.size()-1) + results.get(results.size()-2));
+		  }
+		  result = results.get(n);
+	  }
+	  
 }
 
    public static int computeRecursive(int n) {
