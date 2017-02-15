@@ -45,15 +45,9 @@ private ArrayList<Integer> results = new ArrayList<Integer>();
 return result;
 }
 
-   /*public static int getEfficiency() {
-     if (Compute.iterative.isSelected()) {
-       return i;
-     }
-     if (Compute.recursive.isSelected()) {
-       return callsToRecursive;
-     }
+   public static int getEfficiency() {
+	efficiency++;
    }
-*/
   }
 
 
