@@ -29,7 +29,6 @@ private static int totalEfficiency;
 }
 
    public static long computeRecursive(int n) {
-	GetEfficiency();
       if (n == 0) {
         result = 0;
       }
@@ -39,6 +38,7 @@ private static int totalEfficiency;
       else if (n >= 2) {
         result = 2 * computeRecursive(n-1) + computeRecursive(n-2);
 	  }
+	  GetEfficiency();
 return result;
 }
 

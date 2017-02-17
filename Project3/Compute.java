@@ -91,21 +91,18 @@ private void setFrame(int width, int height) {
 
       compute = new JButton( new AbstractAction("Compute") {
        public void actionPerformed(ActionEvent e) {
+		 Sequence.efficiency = 0;
          if (iterative.isSelected()) {
 			 answer = String.valueOf(Sequence.computeIterative(Integer.parseInt(n.getText())));
 			 result.setText(answer);
-			 efficiency.setText(String.valueOf(Sequence.GetEfficiency()));
-			 Sequence.efficiency = 0;
          }
          else if (recursive.isSelected()) {
 			 Sequence.computeRecursive(Integer.parseInt(n.getText()));
 			 answer = String.valueOf(Sequence.computeRecursive(Integer.parseInt(n.getText())));
 			 result.setText(answer);
- 			 efficiency.setText(String.valueOf(Sequence.GetEfficiency()));
- 			 Sequence.efficiency = 0;
-
-
          }
+   			 efficiency.setText(String.valueOf(Sequence.GetEfficiency()));
+
 	 }
 		});
 		
